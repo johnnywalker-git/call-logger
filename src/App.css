@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+.tel-name-co, .date-employee  {
+    display: flex;
+    justify-content: space-around;
+}
+
+.call-box {
+    width: 50%;
+}
+
+.tel-name-co > *, .date-employee  > *{
+    margin: 10px;
+}
+
