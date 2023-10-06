@@ -18,10 +18,11 @@ const PrevCalls = () => {
       }, []);
 
     return (
-        <div>
+        <div className="prev-call-container">
         <h2>Previous calls</h2>
         {calls.map((call) => {
-            return <PrevCallBox call={call} />
+            return (
+            <PrevCallBox call={call} key={call.id}/> )
         })}
         </div>
     )

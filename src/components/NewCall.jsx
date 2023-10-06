@@ -51,25 +51,31 @@ const NewCall = ({user}) => {
         <div className="call-box">
             <h2>New call</h2>
                 <form onSubmit={(e) => {newCallData(e)}}>
-                <div className="tel-name-co">
-                    <label htmlFor="telephone">telephone</label>
-                    <input type="text" id="telephone" value={telephone} onChange={(e) => {setTelephone(e.target.value)}} required/>
-                    <label htmlFor="name" >name</label>
-                    <input type="text" id="name" value={name} onChange={(e) => {setName(e.target.value)}} required/>
-                    <label htmlFor="company">company</label>
-                    <input type="text" id="company" value={company} onChange={(e) => {setCompany(e.target.value)}} required/>
-                    </div>
-                    <div className="date-employee">
+                    <div className="label-input-date">
                     <label htmlFor="date">date</label>
                     <input type="text" id="date" defaultValue={dateTime} readOnly/>
+                    </div>
+                    <div className="label-input-employee">
                     <label htmlFor="employee">employee</label>
                     <input type="text" id="employee" defaultValue={user?.email || ''} readOnly/>
                     </div>
-                    <div className="message-box">
-                    <label htmlFor="message">message</label>
-                    <input type="text" id="message" value={message} onChange={(e) => {setMessage(e.target.value)}} required/>
+                    <div className="label-input-telephone">
+                    <label htmlFor="telephone">telephone</label>
+                    <input type="text" id="telephone" value={telephone} onChange={(e) => {setTelephone(e.target.value)}} required/>
                     </div>
-                    <button type="submit">Submit Call</button>
+                    <div className="label-input-name">
+                    <label htmlFor="name" >name</label>
+                    <input type="text" id="name" value={name} onChange={(e) => {setName(e.target.value)}} required/>
+                    </div>
+                    <div className="label-input-company">
+                    <label htmlFor="company">company</label>
+                    <input type="text" id="company" value={company} onChange={(e) => {setCompany(e.target.value)}} required/>
+                    </div>
+                    <div className="label-input-message">
+                    <label htmlFor="message">message</label>
+                    <textarea type="text" id="message" value={message} onChange={(e) => {setMessage(e.target.value)}} required/>
+                    </div>
+                    <button type="submit" className="label-input-button">Submit Call</button>
                 </form>
         </div>
     )
