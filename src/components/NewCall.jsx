@@ -52,27 +52,27 @@ const NewCall = ({user}) => {
             <h2>New call</h2>
                 <form onSubmit={(e) => {newCallData(e)}}>
                     <div className="label-input-date">
-                    <label htmlFor="date">date</label>
+                    <label htmlFor="date">Date</label>
                     <input type="text" id="date" defaultValue={dateTime} readOnly/>
                     </div>
                     <div className="label-input-employee">
-                    <label htmlFor="employee">employee</label>
+                    <label htmlFor="employee">Employee Email</label>
                     <input type="text" id="employee" defaultValue={user?.email || ''} readOnly/>
                     </div>
                     <div className="label-input-telephone">
-                    <label htmlFor="telephone">telephone</label>
+                    <label htmlFor="telephone">Client Telephone</label>
                     <input type="text" id="telephone" value={telephone} onChange={(e) => {setTelephone(e.target.value)}} required/>
                     </div>
                     <div className="label-input-name">
-                    <label htmlFor="name" >name</label>
+                    <label htmlFor="name">Client Name</label>
                     <input type="text" id="name" value={name} onChange={(e) => {setName(e.target.value)}} required/>
                     </div>
                     <div className="label-input-company">
-                    <label htmlFor="company">company</label>
+                    <label htmlFor="company">Client Company</label>
                     <input type="text" id="company" value={company} onChange={(e) => {setCompany(e.target.value)}} required/>
                     </div>
                     <div className="label-input-message">
-                    <label htmlFor="message">message</label>
+                    <label htmlFor="message">Message</label>
                     <textarea type="text" id="message" value={message} onChange={(e) => {setMessage(e.target.value)}} required/>
                     </div>
                     <button type="submit" className="label-input-button">Submit Call</button>

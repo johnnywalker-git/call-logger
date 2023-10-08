@@ -3,6 +3,11 @@
     margin: 0;  
 }
 
+label, .prev-call-subtitle {
+    font-size: 1em;
+    font-weight: bold;
+}
+
 
 body {
     background: rgb(176,176,176);
@@ -39,13 +44,13 @@ button {
 }
 
 
-form {
+form, .prev-call-box {
     display: grid;
     grid-gap: 3px;
     place-items: center;
     grid-template-areas: 
-            "d n e"
-            "t . c"
+            "d . e"
+            "t n c"
             "m m m"
             ". s .";
 }
@@ -61,11 +66,25 @@ form > div > input {
     width:100%;
 }
 
-.call-box {
+.prev-call-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+}
+
+.call-box, .prev-call-box {
     background-color: whitesmoke;
     padding: 10px;
     width: 85%;
     border-radius: 5px;
+}
+
+.prev-call-box {
+    margin: 5px;
+    width: 100%;
+
 }
 
 #message {
@@ -99,6 +118,26 @@ form > div > input {
 .label-input-button {
     grid-area: s;
     text-align: center;
+}
+
+.prev-call-message {
+    grid-area: m;
+}
+
+.prev-call-number {
+    grid-area: t;
+}
+
+.prev-call-employee {
+    grid-area: e;
+}
+
+.prev-call-name {
+    grid-area: n;
+}
+
+.prev-call-company {
+    grid-area: c;
 }
 
 
