@@ -30,8 +30,10 @@ function App({ user }) {
   else {
     return (
       <div className='main-content'>
-      <Header setSession={setSession}/>
-      <NewCall user={session.user}/>
+      <UserContext.Provider value={session.user}>
+        <Header setSession={setSession}/>
+        <NewCall user={session.user}/>
+        </UserContext.Provider>
       <PrevCalls />
       </div>
     )

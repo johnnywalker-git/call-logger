@@ -2,19 +2,11 @@ import { useEffect, useState } from "react"
 import fetchData from "../utility/fetchData"
 import PrevCallBox from "./PrevCallBox";
 import { supabase } from "../utility/supabase";
+import { UserContext } from "../context/userContext";
 const PrevCalls = () => {
     const [calls,setCalls] = useState([])
-    
-
     useEffect(() => {
-      console.log(supabase.from('saved-calls'))
-    // Subscribe to real-time updates for INSERT events
-    const handleInserts = (payload) => {
-      console.log('Real-time update:', payload);
-      setCalls(prevCalls => [...prevCalls, payload.new]);
-    };
-
-    // Subscribe to INSERT events
+      // Watches for new calls to be added to db
     const subscription = supabase
       .channel('')
       .on('saved-INSERT',
@@ -24,11 +16,9 @@ const PrevCalls = () => {
         table: 'saved-calls',
       },
       (payload) => {
-        console.log(payload)
+        setCalls(prevCalls => [...prevCalls, payload.new]);
       }
-    )
-      .subscribe();
-
+      ).subscribe();
 
         const fetchDataFromSupabase = async () => {
           try {

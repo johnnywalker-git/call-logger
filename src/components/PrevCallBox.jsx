@@ -1,5 +1,4 @@
 const PrevCallBox = ({ call }) => {
-    console.log(call)
 
     return(
         <div className="prev-call-box">
