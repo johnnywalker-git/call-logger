@@ -16,6 +16,8 @@ body {
 
 .prev-call-box > div {
     margin: 1em;
+    padding: .5em;
+    border: 1px solid black;
 }
 
 
@@ -87,6 +89,21 @@ form > div > input {
     justify-content: center;
     align-items: center;
     width: 85%;
+}
+
+.prev-call-container {
+    background-color: rgb(149, 149, 149);
+    margin: 1em;
+    border-radius: 10px;
+}
+
+.prev-call-container h2 {
+    background-color: whitesmoke;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0.5em;
 }
 
 .call-box, .prev-call-box {

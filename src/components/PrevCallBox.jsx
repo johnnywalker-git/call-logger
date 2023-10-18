@@ -1,10 +1,22 @@
 const PrevCallBox = ({ call }) => {
+    function formatDateTimeForDisplay(dateTimeFromDB) {
+        const dbDateTime = new Date(dateTimeFromDB);
+        const dd = String(dbDateTime.getDate()).padStart(2, "0");
+        const mm = String(dbDateTime.getMonth() + 1).padStart(2, "0");
+        const yyyy = dbDateTime.getFullYear();
+        const hh = String(dbDateTime.getHours()).padStart(2, "0");
+        const min = String(dbDateTime.getMinutes()).padStart(2, "0");
+        const sec = String(dbDateTime.getSeconds()).padStart(2, "0");
+      
+        return `${dd}/${mm}/${yyyy} ${hh}:${min}:${sec}`;
+      }
+
 
     return(
         <div className="prev-call-box">
                 <div className="prev-call-date">
                     <p className="prev-call-subtitle">Date:</p>
-                    <p>{call.created_at}</p>
+                    <p>{formatDateTimeForDisplay(call.created_at)}</p>
                 </div>
                 <div className="prev-call-employee">
                 <p className="prev-call-subtitle">Employee:</p>
