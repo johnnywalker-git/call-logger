@@ -2,12 +2,14 @@
 import { supabase } from './supabase';
 
 // Fetch data from the 'your_table_name' table
-const fetchData = async () => {
+const fetchByUser = async (type, criteria) => {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await 
+    supabase
     .from('saved-calls')
     .select('*')
-    .order('created_at', { ascending: false }); ;
+    .ilike('caller_name',`%${criteria}%`)
+    .order('created_at', { ascending: false });
     if (error) {
       console.error('Error fetching data from Supabase:', error.message);
     } else {
@@ -19,4 +21,4 @@ const fetchData = async () => {
 };
 
 // Call the fetchData function
-export default fetchData;
+export default fetchByUser;
