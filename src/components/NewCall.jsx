@@ -38,6 +38,7 @@ const NewCall = ({ user }) => {
     setCompany("");
     setMessage("");
   }
+  
 
   function getFormattedDateTime() {
     const today = new Date();

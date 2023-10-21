@@ -9,6 +9,7 @@ const PrevCalls = () => {
   const [calls, setCalls] = useState([]);
   const [filteredCalls, setFilteredCalls] = useState([]);
   const [searchActive, setSearchActive] = useState("")
+  const [isChecked, setIsChecked] = useState()
 
   useEffect(() => {
     // Watches for new calls to be added to the database
@@ -61,7 +62,9 @@ const PrevCalls = () => {
     setSearchActive(e.target.value)
   }
 
-  console.log("searchActive", searchActive)
+  function handleCheckboxChange() {
+    setIsChecked(!isChecked)
+  }
 
   return (
     <div className="prev-call-container">
@@ -75,6 +78,10 @@ const PrevCalls = () => {
             searchHandle(e);
           }}
         />
+        <div className="check-boxes">
+        <label htmlFor="filter-type"></label>
+        
+        </div>
       </form>
       {searchActive !== ""
         ? filteredCalls.map((call) => (
