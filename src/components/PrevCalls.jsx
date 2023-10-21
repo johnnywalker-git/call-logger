@@ -4,12 +4,13 @@ import fetchByUser from "../utility/fetchByUser";
 import PrevCallBox from "./PrevCallBox";
 import { supabase } from "../utility/supabase";
 import { UserContext } from "../context/userContext";
+import { Checkbox } from '@mui/material'
 
 const PrevCalls = () => {
   const [calls, setCalls] = useState([]);
   const [filteredCalls, setFilteredCalls] = useState([]);
   const [searchActive, setSearchActive] = useState("")
-  const [isChecked, setIsChecked] = useState()
+  const [isChecked, setIsChecked] = useState("caller_name")
 
   useEffect(() => {
     // Watches for new calls to be added to the database
@@ -50,7 +51,7 @@ const PrevCalls = () => {
 
   const sortBy = async (type, criteria) => {
     try {
-      const result = await fetchByUser(type, criteria);
+      const result = await fetchByUser(isChecked, criteria);
       setFilteredCalls(result);
     } catch (error) {
       console.error("Error fetching data from Supabase:", error);
@@ -58,13 +59,16 @@ const PrevCalls = () => {
   };
 
   const searchHandle = (e) => {
-    sortBy("customer_name", e.target.value)
+    sortBy(isChecked, e.target.value)
     setSearchActive(e.target.value)
   }
 
-  function handleCheckboxChange() {
-    setIsChecked(!isChecked)
+  function handleCheckboxChange(e) {
+    setIsChecked(e.target.value)
+    // console.log(e.target.value)
   }
+
+
 
   return (
     <div className="prev-call-container">
@@ -79,8 +83,24 @@ const PrevCalls = () => {
           }}
         />
         <div className="check-boxes">
-        <label htmlFor="filter-type"></label>
-        
+        <label htmlFor="filter-type">Name</label>
+        <Checkbox 
+        onChange={(e) => handleCheckboxChange(e)}
+        value="caller_name"
+        checked={isChecked === "caller_name"}
+        />
+        <label htmlFor="filter-type">Company</label>
+        <Checkbox 
+        onChange={(e) => handleCheckboxChange(e)}
+        value="caller_company"
+        checked={isChecked === "caller_company"}
+        />
+        <label htmlFor="filter-type">Telephone</label>
+        <Checkbox 
+        onChange={(e) => handleCheckboxChange(e)}
+        value="caller_number"
+        checked={isChecked === "caller_number"}
+        />
         </div>
       </form>
       {searchActive !== ""
