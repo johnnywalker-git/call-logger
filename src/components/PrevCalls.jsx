@@ -74,7 +74,7 @@ const PrevCalls = () => {
     <div className="prev-call-container">
       <h2>Previous calls</h2>
       <div className="search-container">
-        <h4>Search</h4>
+        <h4>Searh</h4>
       <form action="" className="filter">
         <label htmlFor="filterName"></label>
         <input
