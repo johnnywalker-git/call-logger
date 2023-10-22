@@ -73,6 +73,8 @@ const PrevCalls = () => {
   return (
     <div className="prev-call-container">
       <h2>Previous calls</h2>
+      <div className="search-container">
+        <h4>Search</h4>
       <form action="" className="filter">
         <label htmlFor="filterName"></label>
         <input
@@ -103,6 +105,7 @@ const PrevCalls = () => {
         />
         </div>
       </form>
+        </div>
       {searchActive !== ""
         ? filteredCalls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
