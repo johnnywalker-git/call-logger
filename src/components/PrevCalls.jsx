@@ -68,15 +68,17 @@ const PrevCalls = () => {
     // console.log(e.target.value)
   }
 
+  
+
 
 
   return (
     <div className="prev-call-container">
       <h2>Previous calls</h2>
       <div className="search-container">
-        <h4>Search</h4>
       <form action="" className="filter">
-        <label htmlFor="filterName"></label>
+        <div className="search-input">
+        <label htmlFor="filterName">Search</label>
         <input
           type="text"
           id="filterName"
@@ -84,6 +86,7 @@ const PrevCalls = () => {
             searchHandle(e);
           }}
         />
+        </div>
         <div className="check-boxes">
         <label htmlFor="filter-type">Name</label>
         <Checkbox 
@@ -110,7 +113,8 @@ const PrevCalls = () => {
         ? filteredCalls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
           ))
-        : calls.map((call) => (
+        : 
+        calls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
           ))}
     </div>

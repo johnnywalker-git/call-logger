@@ -51,11 +51,19 @@ body {
     background: 0;
 }
 
-.search-container {
+.search-container form {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.search-input {
+    display: flex;
+}
+
+.search-input > * {
+    margin: 0px 10px 0px 0px;
 }
 
 
