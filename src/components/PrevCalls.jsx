@@ -5,12 +5,16 @@ import PrevCallBox from "./PrevCallBox";
 import { supabase } from "../utility/supabase";
 import { UserContext } from "../context/userContext";
 import { Checkbox } from '@mui/material'
+import SearchCalendar from "./SearchCalendar";
+
+
 
 const PrevCalls = () => {
   const [calls, setCalls] = useState([]);
   const [filteredCalls, setFilteredCalls] = useState([]);
   const [searchActive, setSearchActive] = useState("")
   const [isChecked, setIsChecked] = useState("caller_name")
+  const [showCalendar, setShowCalendar] = useState(false)
 
   useEffect(() => {
     // Watches for new calls to be added to the database
@@ -65,13 +69,14 @@ const PrevCalls = () => {
 
   function handleCheckboxChange(e) {
     setIsChecked(e.target.value)
-    // console.log(e.target.value)
+  }
+
+  function toggleCalendar(){
+    setShowCalendar((prev) => {return !prev})
+    console.log(showCalendar)
   }
 
   
-
-
-
   return (
     <div className="prev-call-container">
       <h2>Previous calls</h2>
@@ -108,7 +113,9 @@ const PrevCalls = () => {
         />
         </div>
       </form>
+        <button onClick={() => {toggleCalendar()}}>{!showCalendar ? "Open" : "Close"} Calendar</button>
         </div>
+          {showCalendar && <SearchCalendar/>}
       {searchActive !== ""
         ? filteredCalls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
