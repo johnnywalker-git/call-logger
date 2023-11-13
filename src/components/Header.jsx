@@ -9,6 +9,7 @@ const Header = ({setSession}) => {
     console.log("user user", currentUser)
     return (
         <div className="header-container">
+            <img src="/logo.jpg" className="image-logo-gb"></img>
             <h1>Call List</h1>
             <ProfileBar setSession={setSession}/>
         </div>

@@ -189,6 +189,11 @@ form > div > input {
     grid-area: c;
 }
 
+.image-logo-gb {
+    width: 100px;
+    height: 100px;
+}
+
 
 
 
