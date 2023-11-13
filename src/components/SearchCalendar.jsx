@@ -15,8 +15,6 @@ const SearchCalendar = () => {
           console.log(error);
         }
       }
-      
-      
 
     return <div className='calendar-mui'>
       <LocalizationProvider dateAdapter={AdapterDayjs}>

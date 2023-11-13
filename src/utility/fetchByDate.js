@@ -1,32 +1,34 @@
 import { supabase } from "./supabase";
 
 const fetchByDate = async (selectedDate) => {
+  const date = new Date(selectedDate);
+  const year = date.getUTCFullYear();
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+  const day = date.getUTCDate().toString().padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}T00:00:00Z`;
+  const endOfDay = `${year}-${month}-${day}T23:59:59Z`;
 
-    const date = new Date(selectedDate);
-    const year = date.getUTCFullYear();
-    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-    const day = date.getUTCDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
+  console.log("Date", date);
+  console.log(formattedDate);
 
-    console.log("Date", date)
-    console.log(formattedDate)
+  try {
+    console.log("Selected date", formattedDate);
+    console.log("end of day", endOfDay)
+    
+    const { data, error } = await supabase
+      .from("saved-calls")
+      .select('*')
+      .range('created_at', formattedDate, endOfDay);
 
-    try {
-        console.log(selectedDate)
-        const { data, error } = await supabase
-        .from("saved-calls")
-        .select('*')
-        //Error
-        .eq('created_at', "2023-05-10 19:12:32+00")
-        if (error) {
-          console.error('Error fetching data from Supabase:', error.message);
-        } else {
-            console.log(data)
-            return data
-        }
-      } catch (error) {
-        console.error('Unexpected error:', error.message);
-      }
-}
+    if (error) {
+      console.error('Error fetching data from Supabase:', error.message);
+    } else {
+      console.log(data);
+      return data;
+    }
+  } catch (error) {
+    console.error('Unexpected error:', error.message);
+  }
+};
 
-export default fetchByDate
+export default fetchByDate;

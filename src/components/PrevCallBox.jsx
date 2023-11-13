@@ -11,7 +11,6 @@ const PrevCallBox = ({ call }) => {
         return `${dd}/${mm}/${yyyy} ${hh}:${min}:${sec}`;
       }
 
-
     return(
         <div className="prev-call-box">
                 <div className="prev-call-date">
