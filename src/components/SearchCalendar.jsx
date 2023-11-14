@@ -5,18 +5,19 @@ import dayjs, { Dayjs } from 'dayjs';
 import fetchByDate from '../utility/fetchByDate';
 import getSearchableDate from '../utility/getSearchableDate';
 
-const SearchCalendar = () => {
+const SearchCalendar = ({setSearchActive, setFilteredCalls}) => {
 
     const searchByDate = async (e) => {
         const selectedDate = e.format('YYYY-MM-DD'); // Format the Day.js object to match the expected format
         try {
           const dateData = await fetchByDate(selectedDate);
+          console.log(dateData, "dateData")
+          setFilteredCalls(dateData)
+          setSearchActive("Yes")
         } catch (error) {
           console.log(error);
         }
       }
-
-
 
     return <div className='calendar-mui'>
       <LocalizationProvider dateAdapter={AdapterDayjs}>

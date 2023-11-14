@@ -15,6 +15,8 @@ const PrevCalls = () => {
   const [searchActive, setSearchActive] = useState("")
   const [isChecked, setIsChecked] = useState("caller_name")
   const [showCalendar, setShowCalendar] = useState(false)
+  console.log("filteredCalls", filteredCalls)
+  console.log("setsearchactive", searchActive)
 
   useEffect(() => {
     // Watches for new calls to be added to the database
@@ -35,12 +37,15 @@ const PrevCalls = () => {
       subscription.unsubscribe();
     };
 
-  }, [calls]);
+  }, []);
 
   useEffect(() => {
+
     // Fetch initial data
     fetchDataFromSupabase();
   }, []);
+
+  
 
 
 
@@ -115,7 +120,7 @@ const PrevCalls = () => {
       </form>
         <button onClick={() => {toggleCalendar()}}>{!showCalendar ? "Open" : "Close"} Calendar</button>
         </div>
-          {showCalendar && <SearchCalendar/>}
+          {showCalendar && <SearchCalendar setSearchActive={setSearchActive} setFilteredCalls={setFilteredCalls}/>}
       {searchActive !== ""
         ? filteredCalls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
