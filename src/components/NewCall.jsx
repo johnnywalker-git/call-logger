@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import sendObjectToSupabase from "../utility/sendObject";
+import getSearchableDate from '../utility/getSearchableDate';
+
 
 // ... (import statements and other code)
 
@@ -27,6 +29,7 @@ const NewCall = ({ user }) => {
       caller_name: name,
       caller_company: company,
       message,
+      search_date: getSearchableDate()
     };
     sendObjectToSupabase(newCall);
     resetForm();
