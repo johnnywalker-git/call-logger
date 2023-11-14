@@ -22,6 +22,7 @@ const SearchCalendar = ({setSearchActive, setFilteredCalls}) => {
     return <div className='calendar-mui'>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar defaultValue={dayjs(getSearchableDate())}  onChange={(e) => {searchByDate(e)}} />
+    
       </LocalizationProvider> 
       </div>
 }

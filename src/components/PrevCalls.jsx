@@ -21,18 +21,18 @@ const PrevCalls = () => {
   useEffect(() => {
     // Watches for new calls to be added to the database
     const subscription = supabase
-      .channel("")
-      .on("saved-INSERT", {
+      .channel("saved-calls")
+      .on("*", {
         event: "INSERT",
         schema: "public",
         table: "saved-calls",
       },
       (payload) => {
+        console.log("payload", payload)
         setCalls((prevNewCalls) => [...prevNewCalls, payload.new]);
       }
     ).subscribe();
 
-    fetchDataFromSupabase()
     return () => {
       subscription.unsubscribe();
     };
@@ -119,6 +119,7 @@ const PrevCalls = () => {
         </div>
       </form>
         <button onClick={() => {toggleCalendar()}}>{!showCalendar ? "Open" : "Close"} Calendar</button>
+        <button onClick={() => {window.location.reload()}}>Reset All</button>
         </div>
           {showCalendar && <SearchCalendar setSearchActive={setSearchActive} setFilteredCalls={setFilteredCalls}/>}
       {searchActive !== ""
