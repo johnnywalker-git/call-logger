@@ -3,6 +3,10 @@
     margin: 0;  
 }
 
+h1, h2, label {
+    font-family: 'Mukta', sans-serif;
+}
+
 label, .prev-call-subtitle {
     font-size: 1em;
     font-weight: bold;
@@ -192,6 +196,38 @@ form > div > input {
 .image-logo-gb {
     width: 100px;
     height: 100px;
+}
+
+@media only screen and (max-width: 785px) {
+    form, .prev-call-box {
+        grid-template-areas: 
+            "d"
+            "n"
+            "e"
+            "t"
+            "c"
+            "m"
+            "s";
+    }
+
+    form > div > input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .prev-call-box > div {
+        margin: 0;
+    }
+
+    .search-input {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-input > * {
+        margin: 5px 0;
+    }
+
 }
 
 
