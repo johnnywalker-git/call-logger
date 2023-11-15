@@ -202,6 +202,16 @@ form > div > input {
     height: 100px;
 }
 
+.non-styled-button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
 @media only screen and (max-width: 785px) {
     form, .prev-call-box {
         grid-template-areas: 

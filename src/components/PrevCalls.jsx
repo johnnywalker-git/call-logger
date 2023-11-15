@@ -6,6 +6,7 @@ import { supabase } from "../utility/supabase";
 import { UserContext } from "../context/userContext";
 import { Checkbox } from '@mui/material'
 import SearchCalendar from "./SearchCalendar";
+import { Icon } from '@iconify/react';
 
 
 
@@ -118,8 +119,9 @@ const PrevCalls = () => {
         />
         </div>
       </form>
-        <button onClick={() => {toggleCalendar()}}>{!showCalendar ? "Open" : "Close"} Calendar</button>
-        <button onClick={() => {window.location.reload()}}>Reset All</button>
+          
+        <button className="non-styled-button" onClick={() => {toggleCalendar()}}> <Icon icon="solar:calendar-bold" color="#4c88c5"  width="30" height="30" /></button>
+        <button className="non-styled-button" onClick={() => {window.location.reload()}}><Icon icon="bx:reset" color="#4c88c5" width="30" height="30" /></button>
         </div>
           {showCalendar && <SearchCalendar setSearchActive={setSearchActive} setFilteredCalls={setFilteredCalls}/>}
       {searchActive !== ""
