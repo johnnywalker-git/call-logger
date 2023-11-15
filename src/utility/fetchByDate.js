@@ -2,7 +2,6 @@ import { supabase } from "./supabase";
 
 const fetchByDate = async (selectedDate) => {
   
-  console.log(selectedDate, "selected date")
   try {
  
     const { data, error } = await supabase

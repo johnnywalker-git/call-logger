@@ -16,8 +16,6 @@ const PrevCalls = () => {
   const [searchActive, setSearchActive] = useState("")
   const [isChecked, setIsChecked] = useState("caller_name")
   const [showCalendar, setShowCalendar] = useState(false)
-  console.log("filteredCalls", filteredCalls)
-  console.log("setsearchactive", searchActive)
 
   useEffect(() => {
     // Watches for new calls to be added to the database
@@ -79,7 +77,6 @@ const PrevCalls = () => {
 
   function toggleCalendar(){
     setShowCalendar((prev) => {return !prev})
-    console.log(showCalendar)
   }
 
   

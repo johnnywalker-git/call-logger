@@ -9,7 +9,6 @@ import { supabase } from "./supabase";
       if (error) {
         console.error('Error sending object to Supabase:', error.message);
       } else {
-        console.log('Object sent successfully:', data);
       }
     } catch (error) {
       console.error('Unexpected error:', error.message);

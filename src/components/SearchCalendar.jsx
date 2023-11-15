@@ -11,7 +11,6 @@ const SearchCalendar = ({setSearchActive, setFilteredCalls}) => {
         const selectedDate = e.format('YYYY-MM-DD'); // Format the Day.js object to match the expected format
         try {
           const dateData = await fetchByDate(selectedDate);
-          console.log(dateData, "dateData")
           setFilteredCalls(dateData)
           setSearchActive("Yes")
         } catch (error) {
