@@ -117,10 +117,10 @@ const PrevCalls = () => {
         </div>
       </form>
           
-        <button className="non-styled-button" onClick={() => {toggleCalendar()}}> <Icon icon="solar:calendar-bold" color="#4c88c5"  width="30" height="30" /></button>
+        <button className="non-styled-button" onClick={() => {toggleCalendar()}}> <Icon icon="solar:calendar-bold" color={searchActive ? "red" : "#4c88c5"}  width="30" height="30" /></button>
         <button className="non-styled-button" onClick={() => {window.location.reload()}}><Icon icon="bx:reset" color="#4c88c5" width="30" height="30" /></button>
         </div>
-          {showCalendar && <SearchCalendar setSearchActive={setSearchActive} setFilteredCalls={setFilteredCalls}/>}
+          {showCalendar && <SearchCalendar setShowCalendar={setShowCalendar} setSearchActive={setSearchActive} setFilteredCalls={setFilteredCalls}/>}
       {searchActive !== ""
         ? filteredCalls.map((call) => (
             <PrevCallBox call={call} key={call.id} />

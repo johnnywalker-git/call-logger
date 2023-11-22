@@ -24,12 +24,13 @@ const NewCall = ({ user }) => {
     e.preventDefault();
     const newCall = {
       created_at: getFormattedDateTimeForDB(),
-      employee: user.email,
+      employee: user.user_metadata.name,
       caller_number: telephone,
       caller_name: name,
       caller_company: company,
       message,
-      search_date: getSearchableDate()
+      search_date: getSearchableDate(),
+      employee_email: user.email
     };
     sendObjectToSupabase(newCall);
     resetForm();
@@ -71,8 +72,8 @@ const NewCall = ({ user }) => {
           <input type="text" id="date" value={dateTime} readOnly />
         </div>
         <div className="label-input-employee">
-          <label htmlFor="employee">Employee Email</label>
-          <input type="text" id="employee" value={user?.email || ""} readOnly />
+          <label htmlFor="employee">Employee Name</label>
+          <input type="text" id="employee" value={user?.user_metadata.name || ""} readOnly />
         </div>
         <div className="label-input-telephone">
           <label htmlFor="telephone">Client Telephone</label>
