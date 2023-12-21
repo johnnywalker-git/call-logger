@@ -16,42 +16,55 @@ const PrevCalls = () => {
   const [searchActive, setSearchActive] = useState("")
   const [isChecked, setIsChecked] = useState("caller_name")
   const [showCalendar, setShowCalendar] = useState(false)
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
-    // Watches for new calls to be added to the database
-    const subscription = supabase
-      .channel("saved-calls")
-      .on("*", {
-        event: "INSERT",
-        schema: "public",
-        table: "saved-calls",
-      },
-      (payload) => {
-        console.log("payload", payload)
-        setCalls((prevNewCalls) => [...prevNewCalls, payload.new]);
-      }
-    ).subscribe();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-
+    const changes = supabase
+  .channel('schema-db-changes')
+  .on(
+    'postgres_changes',
+    {
+      event: 'INSERT', // Listen only to INSERTs
+      schema: 'public',
+    },
+    (payload) => {setCalls((prev) => [payload.new, ...prev])
+    }
+  ).subscribe()
   }, []);
 
+
+
+
   useEffect(() => {
 
-    // Fetch initial data
+
     fetchDataFromSupabase();
   }, []);
 
   
+  const getFromTo = () => {
+    const itemsPerPage = 10;
+    let from = page * itemsPerPage;
+    const to = (page + 1) * itemsPerPage;
+   
+    if(page > 0) {
+      from += 1
+    }
 
-
+    return {from, to}
+  }
 
   const fetchDataFromSupabase = async () => {
+    const {from, to} = getFromTo()
     try {
-      const result = await fetchData();
-      setCalls(result);
+      const result = await fetchData(from, to);
+      setCalls((prev) => {
+        const uniqueResult = result.filter(
+          (newCall) => !prev.some((existingCall) => existingCall.id === newCall.id)
+        );
+        return [...prev, ...uniqueResult];
+      });
+      setPage((prev) => prev + 1)
     } catch (error) {
       console.error("Error fetching data from Supabase:", error);
     }
@@ -79,6 +92,19 @@ const PrevCalls = () => {
     setShowCalendar((prev) => {return !prev})
   }
 
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
+  const resetFields = () => {
+    setFilteredCalls([])
+    fetchDataFromSupabase();
+    setSearchActive("")
+    const searchInput = document.getElementById("filterName")
+    searchInput.value = ""
+
+  }
+
   
   return (
     <div className="prev-call-container">
@@ -90,6 +116,7 @@ const PrevCalls = () => {
         <input
           type="text"
           id="filterName"
+          onKeyDown={(e) => checkKeyDown(e)}
           onChange={(e) => {
             searchHandle(e);
           }}
@@ -118,7 +145,7 @@ const PrevCalls = () => {
       </form>
           
         <button className="non-styled-button" onClick={() => {toggleCalendar()}}> <Icon icon="solar:calendar-bold" color={searchActive ? "red" : "#4c88c5"}  width="30" height="30" /></button>
-        <button className="non-styled-button" onClick={() => {window.location.reload()}}><Icon icon="bx:reset" color="#4c88c5" width="30" height="30" /></button>
+        <button className="non-styled-button" onClick={() => {resetFields()}}><Icon icon="bx:reset" color="#4c88c5" width="30" height="30" /></button>
         </div>
           {showCalendar && <SearchCalendar setShowCalendar={setShowCalendar} setSearchActive={setSearchActive} setFilteredCalls={setFilteredCalls}/>}
       {searchActive !== ""
@@ -129,6 +156,9 @@ const PrevCalls = () => {
         calls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
           ))}
+          <div className="see-more-button">
+          <button onClick={() => {fetchDataFromSupabase()}}>See more</button>
+          </div>
     </div>
   );
 };

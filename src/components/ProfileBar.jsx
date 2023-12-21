@@ -57,8 +57,8 @@ const ProfileBar = ({setSession, currentUser}) => {
     return (
         <div className="profile-container">
         <h3>{currentUser && currentUser.user_metadata.name}</h3>
-        <button onClick={() => {setShowSettings((prev) => !prev)}}>
-        <Icon icon="ep:user-filled" color="gray" width="50" height="50" />
+        <button onClick={() => {setShowSettings((prev) => !prev)}} className='non-styled-button'>
+        <Icon icon="ep:user-filled" color="#3C79BD" width="50" height="50" />
         </button>
         {showSettings && (
         <>

@@ -10,6 +10,7 @@ const supabase = createClient('https://pjsnxhvysbwjfcnritql.supabase.co', 'eyJhb
 
 
 function App({ user }) {
+  const [signUpError, setSignUpError] = useState("")
   const [session, setSession] = useState("null")
   useEffect(() => {
     supabase.auth.getSession().then(({data : {session}}) => {
@@ -23,8 +24,51 @@ function App({ user }) {
       return () => subscription.unsubscribe()
   }, [])
 
+  const handleSignUp = async (email, password) => {
+    // Check if the email domain is allowed
+    const allowedDomain = 'georgebarkerandco.co.uk'; // Replace with your allowed domain
+    if (!email.endsWith(`@${allowedDomain}`)) {
+      console.error('Invalid email domain');
+      setSignUpError("Invalid Details")
+      return;
+    }
+  
+    // Your custom sign-up logic goes here
+    // Example: Redirect the user to a specific page after successful sign-up
+    const { user, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+  
+    if (error) {
+      console.error('Error signing up:', error.message);
+      // You can provide feedback to the user here if needed
+    } else {
+      console.log('User signed up successfully:', user);
+      // You can redirect or perform any other actions after successful sign-up
+    }
+  };
+
+
+
   if (!session) {
-    return (<Auth supabaseClient={supabase} />)
+    return (
+    <div className="loginsignup">
+      <img src="/logo.jpg" className="image-logo-gb"></img>
+      <h1>Call List</h1>
+      <Auth
+      supabaseClient={supabase}
+      providers={[]}
+      appearance={{ 
+        theme: ThemeSupa,
+        style: {
+          button: { background: '#3372B9', color: 'white' }
+        }
+        
+      }}
+      signUp={(email, password) => handleSignUp(email, password)}
+    />
+    </div>)
   }
 
   else {
@@ -33,8 +77,8 @@ function App({ user }) {
       <UserContext.Provider value={session.user}>
         <Header setSession={setSession}/>
         <NewCall user={session.user}/>
+        <PrevCalls />
         </UserContext.Provider>
-      <PrevCalls />
       </div>
     )
   }
