@@ -104,11 +104,11 @@ const PrevCalls = () => {
     searchInput.value = ""
 
   }
-
+  console.log(filteredCalls)
   
   return (
     <div className="prev-call-container">
-      <h2>Previous calls</h2>
+      <h2>{filteredCalls.length > 0 ? 'Filtered' : 'Latest' } calls</h2>
       <div className="search-container">
       <form action="" className="filter">
         <div className="search-input">

@@ -146,6 +146,8 @@ form > div > input {
     border-radius: 10px;
 }
 
+
+
 .prev-call-container h2 {
     background-color: whitesmoke;
     width: 100%;
@@ -165,7 +167,6 @@ form > div > input {
 .prev-call-box {
     margin: 5px;
     width: 100%;
-
 }
 
 #message {
