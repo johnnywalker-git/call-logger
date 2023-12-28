@@ -104,7 +104,6 @@ const PrevCalls = () => {
     searchInput.value = ""
 
   }
-  console.log(filteredCalls)
   
   return (
     <div className="prev-call-container">
@@ -156,9 +155,9 @@ const PrevCalls = () => {
         calls.map((call) => (
             <PrevCallBox call={call} key={call.id} />
           ))}
-          <div className="see-more-button">
+          {!filteredCalls.length > 0 && <div className="see-more-button">
           <button onClick={() => {fetchDataFromSupabase()}}>See more</button>
-          </div>
+          </div>}
     </div>
   );
 };

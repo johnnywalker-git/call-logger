@@ -102,7 +102,6 @@ const NewCall = ({ user }) => {
             id="company"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            required
           />
         </div>
         <div className="label-input-message">
