@@ -16,7 +16,7 @@ This project was for a client that I work with, who's practice was wanting to ch
 
 Supabase was a good choice due to built-in auth, and also as the data had come from a spreadsheet, it made sense to have the option of SQL functions on the data. It also has a generous free tier, and good docs and community support. Supabase also offers a real-time database option. So this will keep the app constantly updated for when new calls come in.
 
-Decided on Vanilla React for the front-end via Vite. It is lightweight and as the app doesn’t need much routing NextJS would be overkill.
+I decided on Vanilla React for the front-end via Vite. It is lightweight and as the app doesn’t need much routing NextJS would be overkill.
 
 Also used MUI to simplify and speed-up the process for things like checkboxes and the calender to select a certain date to query the database.
 
