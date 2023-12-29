@@ -1,7 +1,5 @@
-// Assuming you have already created a supabase client
 import { supabase } from './supabase';
 
-// Fetch data from the 'your_table_name' table
 const fetchData = async (from, to) => {
   try {
     const { data, error } = await supabase
@@ -19,5 +17,4 @@ const fetchData = async (from, to) => {
   }
 };
 
-// Call the fetchData function
 export default fetchData;
