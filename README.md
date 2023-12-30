@@ -72,7 +72,7 @@ It has a real-time connection to the database, so is always listening to Supabas
 
 Because every call is timestamped everything is in order of who called the most recent.
 
-It is also important to note that in this application I implemented a form of pagination. As the database has a lot of calls from the initial data which had to be inserted, this made the amount of data coming back on each CRUD request enourmous. To stop getting every call back from the table, I implemented only certain ranges, which are then passed to my request in the utility function below...
+It is also important to note that in this application I implemented a form of pagination. As the database has a lot of calls from the initial data which had to be inserted, this made the amount of data coming back on each CRUD request enourmous. I then added a 'see more' button to the app, to request more calls from a further range. To stop getting every call back from the table, I implemented only certain ranges, which are then passed to my request in the utility function below...
 
 ![App Screenshot](https://github.com/johnnywalker-git/call-logger/blob/main/README-IMG/Pagination-req.jpg?raw=true)
 
