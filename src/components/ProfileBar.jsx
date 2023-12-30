@@ -49,7 +49,6 @@ const ProfileBar = ({setSession, currentUser}) => {
         updateDetails(updatedName)
     }
 
-    console.log(currentUser)
 
 
 

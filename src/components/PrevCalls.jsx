@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import fetchData from "../utility/fetchData";
 import fetchByUser from "../utility/fetchByUser";
 import PrevCallBox from "./PrevCallBox";
@@ -17,6 +17,7 @@ const PrevCalls = () => {
   const [isChecked, setIsChecked] = useState("caller_name")
   const [showCalendar, setShowCalendar] = useState(false)
   const [page, setPage] = useState(0)
+  const currentUser = useContext(UserContext)
 
   useEffect(() => {
     const changes = supabase
@@ -37,9 +38,9 @@ const PrevCalls = () => {
 
   useEffect(() => {
 
-
-    fetchDataFromSupabase();
-  }, []);
+    currentUser && currentUser.email.endsWith("@georgebarkerandco.co.uk" || "@gmail.com") && fetchDataFromSupabase() 
+    
+  }, [currentUser]);
 
   
   const getFromTo = () => {
