@@ -6,8 +6,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import Header from './components/Header'
 import NewCall from './components/NewCall'
 import PrevCalls from './components/PrevCalls'
-const supabase = createClient('https://pjsnxhvysbwjfcnritql.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqc254aHZ5c2J3amZjbnJpdHFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY0MjI1MjAsImV4cCI6MjAxMTk5ODUyMH0.6uyBinlI0oskKCyzM2S0FMuC33wUMaTVOQSsnwgEnEI')
-
+import { supabase } from './utility/supabase'
 
 function App({ user }) {
   const [signUpError, setSignUpError] = useState("")
