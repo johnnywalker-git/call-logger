@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { UserContext } from './context/userContext'
-import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import Header from './components/Header'

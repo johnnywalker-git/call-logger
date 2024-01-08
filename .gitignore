@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-./src/utility/supabase.js
+/src/utility/supabase.js
 /call-data
 
